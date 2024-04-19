@@ -4,16 +4,34 @@ from time import sleep
 
 cont = 0
 
+def existeArquivo(nome):
+    try:
+        a = open(nome, 'rt')
+        a.close()
+    except FileNotFoundError:
+        return False
+    else:
+        return True
+
+existe = False
+while existe != True:
+    nome = str(input('Digite o nome do arquivo que contém os cnpjs com extensão: ')).strip()
+    if not existeArquivo(nome):
+        print('Arquivo não encontrado')
+    else:
+        existe = True
+sep = str(input('Digite o separador do arquivo: ')).strip()
+
 # Função criada para saber tamamho aproximado do relatório
 def calcula_tempo():
-    with open('cnpjs.txt', 'r') as arquivo:
+    with open(nome, 'r') as arquivo:
         size = len(arquivo.readlines())
         print(f'Tempo aproximado para o relatório: {size / 3:.0f}min.')
         input('Pressione ENTER para continuar')
 calcula_tempo()
-lista = ('nome', 'fantasia', 'cnpj', 'logradouro',
+lista = ['nome', 'fantasia', 'cnpj', 'logradouro',
          'numero', 'municipio', 'bairro', 'uf',
-         'cep', 'email', 'situacao')
+         'cep', 'email', 'situacao']
 
 # leitura do arquivo e ciração do .csv
 with open('excel.csv', 'a', newline='', encoding='utf-8') as txt:
@@ -23,8 +41,7 @@ with open('excel.csv', 'a', newline='', encoding='utf-8') as txt:
             txt.write(c + ';')
         txt.write('\n')
         for linha in arquivo:
-            cnpj = linha.split(";")[0]
-            #cnpj = linha.split(";")[0] # ativar essa linha
+            cnpj = linha.split(sep)[0]
             cont += 1
             url = (f'https://www.receitaws.com.br/v1/cnpj/{cnpj}/')
             req = requests.get(url)
