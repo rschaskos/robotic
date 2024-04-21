@@ -11,7 +11,7 @@ Para utilizar essa API você deve passar dois parâmetros ao executar o código.
       19316524000114;DELTA SHOP - DISTRIBUIDORA DE PRODUTOS HOSPITALARES LTDA;DELTA SHOP;(54) 3523-1104;19.316.524/0001-14;
       19660722000109;;;;19.660.722/0001-09;
 
-    Outro exemplo com separador ao final do arquivo -> virgula ; :
+    Outro exemplo com separador ao final do arquivo -> virgula , :
   
       53531466000180,
       53743518000181,
