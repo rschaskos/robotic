@@ -36,6 +36,6 @@ Para utilizar essa API você deve passar dois parâmetros ao executar o código.
       
   4 - Outro ponto importante a se observar é colocar o arquivo com a lista de CNPJ **na mesma pasta** que se encontra o arquivo de execução .py
 
-  5 - Ao final da lista de CNPJ será salvo um arquivo "excel.csv" com as inforamções já tabuladas.
+  5 - Ao final da lista de CNPJ, as informações coletadas serão salvas um arquivo "excel.csv" já tabuladas.
 
   Espero que lhe seja útil.
