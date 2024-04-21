@@ -1,3 +1,6 @@
+Essa é uma API gratuita para consultar informações referentes ao CNPJ de forma automatizada. Por ser gratuita, possui um limite de 3 consultas por minutos.
+O código foi ajustado para realizar uma nova consulta a cada minuta até que a lista de CNPJ se esgote. 
+
 Para utilizar essa API você deve passar dois parâmetros ao executar o código.
 
  1 - O arquivo TXT com a lista de CNPJ **precisa conter um separador**. 
@@ -27,10 +30,12 @@ Para utilizar essa API você deve passar dois parâmetros ao executar o código.
       ...
       
   3 - No código, por padrão, as informações que se busca na API da Receita Federal são essas abaixo:
-      lista = ['nome', 'fantasia', 'cnpj', 'logradouro', 'numero', 'municipio', 'bairro', 'uf', 'cep', 'email', 'situacao']
-
       Você pode ajustar removendo ou adicionando mais informações conforme necessitar.
+      
+      lista = ['nome', 'fantasia', 'cnpj', 'logradouro', 'numero', 'municipio', 'bairro', 'uf', 'cep', 'email', 'situacao']
       
   4 - Outro ponto importante a se observar é colocar o arquivo com a lista de CNPJ **na mesma pasta** que se encontra o arquivo de execução .py
 
-  
+  5 - Ao final da lista de CNPJ será salvo um arquivo "excel.csv" com as inforamções já tabuladas.
+
+  Espero que lhe seja útil.
