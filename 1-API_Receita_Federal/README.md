@@ -3,7 +3,7 @@ Para utilizar essa API você deve passar dois parâmetros ao executar o código.
  1 - O arquivo TXT com a lista de CNPJ **precisa conter um separador**. 
      É muito comum que se utilizem os seguintes separadores: ( **, ; |** )
 
-    Abaixo segue um exemplo lista com separador -> ponto e virgula ; :
+    Abaixo segue um exemplo de lista com separador -> ponto e virgula ; :
     
       18444923000106;ORTOTRAUMA CLINICA MEDICA LTDA;ORTOTRAUMA;(43) 3546-1226;18.444.923/0001-06;
       18444955000101;;;(43) 3557-2246;18.444.955/0001-01;
