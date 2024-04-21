@@ -33,7 +33,7 @@ lista = ['nome', 'fantasia', 'cnpj', 'logradouro',
          'numero', 'municipio', 'bairro', 'uf',
          'cep', 'email', 'situacao']
 
-# leitura do arquivo e ciração do .csv
+# leitura do arquivo e gravação do .csv
 with open('excel.csv', 'a', newline='', encoding='utf-8') as txt:
     with open('cnpjs.txt', 'r') as arquivo:
         # cabeçalho

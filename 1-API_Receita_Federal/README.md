@@ -1,6 +1,10 @@
 Essa é uma API gratuita para consultar informações referentes ao CNPJ de forma automatizada. Por ser gratuita, possui um limite de 3 consultas por minutos.
 O código foi ajustado para realizar uma nova consulta a cada minuta até que a lista de CNPJ se esgote. 
 
+O código utiliza dois módulos, para instalar basta digitar os seguintes comandos no terminal:
+    pip install requests
+    pip install json
+
 Para utilizar essa API você deve passar dois parâmetros ao executar o código.
 
  1 - O arquivo TXT com a lista de CNPJ **precisa conter um separador**. 
