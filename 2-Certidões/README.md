@@ -12,31 +12,33 @@ O código encontra-se adaptado para geração das seguintes certidões:
 ```
 
 ## Pré-requisitos
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes bibliotecas:
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes bibliotecas, para isso digite os comandos abaixo no terminal:
 ```
-pyautogui
-webbrowser
-selenium
-pygetwindow
+pip install pyautogui
+pip install webbrowser
+pip install selenium
+pip install pygetwindow
 ```
 Além disso, você também precisa ter o Python instalado em sua máquina.
 
-Como executar
-Clone o repositório ou faça uma cópia do arquivo .py em sua IDE favorita.
-Abra o terminal e navegue até o diretório onde o arquivo está localizado.
-Execute o arquivo Python com o comando:
-python nome_do_arquivo.py
+## Como executar
 
-Funcionalidades
-Descreva aqui as principais funcionalidades do seu projeto.
+1. Clone o repositório ou faça uma cópia do arquivo "main.py" em sua IDE favorita e então basta dar um RUN.
+2. Se preferir também pode abrir o terminal e navegar até o diretório onde o arquivo está localizado.
+3. Execute o arquivo Python com o comando:
+```
+python main.py
+```
 
-Contribuição
-Faça o fork do projeto.
-Crie uma branch para a sua feature (git checkout -b feature/nome-da-feature).
-Faça o commit (git commit -am 'Adicionando nova funcionalidade').
-Faça o push para a branch (git push origin feature/nome-da-feature).
-Crie um novo Pull Request.
-Licença
-Este projeto está sob a licença XYZ. Veja o arquivo LICENSE para mais detalhes.
+## Funcionalidades
 
-Lembre-se de personalizar o README com informações específicas do seu projeto. Boa sorte! 😊
+Este código Python visa automatizar o processo de obtenção de certidões de regularidade fiscal para empresas. Ele interage com sites ou sistemas online, preenchendo formulários, clicando em botões e baixando os documentos necessários.
+
+## Contribuição
+
+1. Faça o fork do projeto.
+2. Crie uma branch para a sua feature (git checkout -b feature/nome-da-feature).
+3. Faça o commit (git commit -am 'Adicionando nova funcionalidade').
+4. Faça o push para a branch (git push origin feature/nome-da-feature).
+5. Crie um novo Pull Request.
