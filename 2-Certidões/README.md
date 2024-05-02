@@ -1,22 +1,24 @@
-# GERADOR DE CERTIDÕES AUTOMATIZADO
+<h1 align="center"> GERADOR DE CERTIDÕES AUTOMATIZADO </h1>
 
-## Esse código tem por objetivo ajudar aqueles que trabalham diarimente na emissão (PDF) de Certidões de Regularidade
+Esse código tem por objetivo ajudar aqueles que trabalham diarimente na emissão (PDF) de Certidões de Regularidade
 
-### O código encontra-se adaptado para geração das seguintes certidões:
-
-Consulta Regularidade do Empregador (FGTS/CRF)
-Certidão de Débitos Tributários e de Dívida Ativa Estadual (Fazenda do Paraná)
-Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (Fazenda Federal)
-Certidão Negativa de Débitos Trabalhistas (Federal)
-Consulta Optantes pelo Simples Nacional (Federal)
+O código encontra-se adaptado para geração das seguintes certidões:
+```
+- Consulta Regularidade do Empregador (FGTS/CRF)
+- Certidão de Débitos Tributários e de Dívida Ativa Estadual (Fazenda do Paraná)
+- Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (Fazenda Federal)
+- Certidão Negativa de Débitos Trabalhistas (Federal)
+- Consulta Optantes pelo Simples Nacional (Federal)
+```
 
 ## Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes bibliotecas:
-
+```
 pyautogui
 webbrowser
 selenium
 pygetwindow
+```
 Além disso, você também precisa ter o Python instalado em sua máquina.
 
 Como executar
