@@ -20,7 +20,7 @@ pip install webbrowser
 pip install selenium
 pip install pygetwindow
 ```
-Além disso, você também precisa ter o Python instalado em sua máquina.
+Além disso, você também precisa ter o Python e Google Chrome instalados em sua máquina.
 
 ## Como executar
 
