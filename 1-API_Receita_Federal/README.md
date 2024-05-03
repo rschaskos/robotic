@@ -1,15 +1,17 @@
-Essa é uma API gratuita para consultar informações referentes ao CNPJ de forma automatizada. Por ser gratuita, possui um limite de 3 consultas por minutos.
-O código foi ajustado para realizar uma nova consulta a cada minuto até que a lista de CNPJ se esgote. 
+<h1 align="center"> API PARA COLETA AUTOMÁTICA DE DADOS DA RFB </h1>
+
+### Essa é uma API gratuita para consultar informações referentes ao CNPJ de forma automatizada. Por ser gratuita, possui um limite de 3 consultas por minutos.
+### O código foi ajustado para realizar uma nova consulta a cada minuto até que a lista de CNPJ se esgote. 
 
 O código utiliza dois módulos, para instalar basta digitar os seguintes comandos no terminal:
 
     pip install requests
     pip install json
 
-Para utilizar essa API você deve passar dois parâmetros ao executar o código.
+# Para utilizar essa API você deve passar dois parâmetros ao executar o código.
 
- 1 - O arquivo TXT com a lista de CNPJ **precisa conter um separador**. 
-     É muito comum que se utilizem os seguintes separadores: ( **, ; |** )
+ ## 1 - O arquivo TXT com a lista de CNPJ precisa conter um separador. 
+     É muito comum que se utilizem os seguintes separadores: ( , ; | )
 
     Abaixo segue um exemplo de lista com separador -> ponto e virgula ; :
     
@@ -26,21 +28,20 @@ Para utilizar essa API você deve passar dois parâmetros ao executar o código.
       53616153000124,
       52027520000191,
 
-  2 - No código, por padrão, a primeira coluna (ou primeiro separador) está definida como CNPJ. Caso o teu relatório tenha outra coluna definida como CNPJ, basta fazer o ajuste nessa parte do código,
-  trocando o 0 por outro número de coluna:
+  ## 2 - No código, por padrão, a primeira coluna (ou primeiro separador) está definida como CNPJ. Caso o teu relatório tenha outra coluna definida como CNPJ, basta fazer o ajuste nessa parte do código, trocando o 0 (zero) por outro número de coluna:
   
       0 = primeira coluna --> cnpj = linha.split(sep)[0]
       1 = segunda coluna --> cnpj = linha.split(sep)[1]
       2 = terceira coluna  --> cnpj = linha.split(sep)[2]
       ...
       
-  3 - No código, por padrão, as informações que se busca na API da Receita Federal são essas abaixo:
+  ## 3 - No código, por padrão, as informações que se busca na API da Receita Federal são essas abaixo:
       Você pode ajustar removendo ou adicionando mais informações conforme necessitar.
       
       lista = ['nome', 'fantasia', 'cnpj', 'logradouro', 'numero', 'municipio', 'bairro', 'uf', 'cep', 'email', 'situacao']
       
-  4 - Outro ponto importante a se observar é colocar o arquivo com a lista de CNPJ **na mesma pasta** que se encontra o arquivo de execução .py
+  ## 4 - Outro ponto importante a se observar é colocar o arquivo com a lista de CNPJ **na mesma pasta** que se encontra o arquivo de execução .py
 
-  5 - Ao final da lista de CNPJ, as informações coletadas serão salvas um arquivo "excel.csv" já tabuladas.
+ ##  5 - Ao final da lista de CNPJ, as informações coletadas serão salvas um arquivo "excel.csv" já tabuladas.
 
   Espero que lhe seja útil.
