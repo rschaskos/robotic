@@ -264,8 +264,8 @@ def simples():
         sleep(0.3)
     pag.press('enter')
 
-
-leia_cnpj()
+if __name__ == '__main__':
+    leia_cnpj()
 while True:
     user = menu(['FGTS', 'ESTADUAL', 'RECEITA FEDERAL', 'TRABALHISTA', 'SIMPLES NACIONAL', 'TROCAR CNPJ', 'GERAR TODAS', 'ENCERRAR'])
     if user == 1:
