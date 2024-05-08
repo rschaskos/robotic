@@ -1,3 +1,7 @@
+#########################################
+#   DESENVOLVIDO POR RSCHASKOS EM 2024  #
+#########################################
+
 import pyautogui as pag
 import webbrowser
 from selenium import webdriver
