@@ -6,6 +6,7 @@ from time import sleep
 from datetime import datetime
 from pygetwindow import PyGetWindowException
 from selenium.common.exceptions import NoSuchElementException
+import customtkinter as ctk
 
 url = ['https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.jsf',
        'http://www.cdw.fazenda.pr.gov.br/cdw/emissao/certidaoAutomatica',
@@ -13,22 +14,58 @@ url = ['https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.j
        'https://www.tst.jus.br/certidao1',
        'https://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21']
 
-version = 1.0
+version = 2.0
 
 # Essa função permite que o Chrome fique aberto mesmo após encerrar o código
 chrome_options = Options()
 chrome_options.add_experimental_option('detach', True)
 
 
+# def leia_cnpj():
+#     global cnpj
+#     cabecalho('DEFINA O CNPJ DA BUSCA')
+#     while True:
+#         try:
+#             cnpj = str(input('Digite o CNPJ desejado p/ consulta: '))
+#             if len(cnpj) < 14 or len(cnpj) > 14:
+#                 print('Possível CNPJ errado')
+#             else:
+#                 break
+#         except KeyboardInterrupt:
+#             print()
+#             print('Usuario encerrou')
+#             exit()
+
 def leia_cnpj():
+    global app
+    app = ctk.CTk()
+    app.title('Desenvolvido em Python')
+    app.geometry('400x100')
+
+    # Criação do campo de entrada para a opção
+    global option_entry
+    option_entry = ctk.CTkEntry(app, placeholder_text='Digite o CNPJ')
+    option_entry.pack(pady=30)
+
+    # Configuração para chamar a função quando a tecla "Enter" for pressionada
+    option_entry.bind('<Return>', handle_option_entry)
+
+    # Execução da aplicação
+    app.mainloop()
+
+
+def handle_option_entry(event=None):
     global cnpj
-    cabeçalho('DEFINA O CNPJ DA BUSCA')
+    cnpj = option_entry.get()
     while True:
         try:
-            cnpj = str(input('Digite o CNPJ desejado p/ consulta: '))
-            if len(cnpj) < 14 or len(cnpj) > 14:
-                print('Possível CNPJ errado')
+            if len(cnpj) < 14:
+                print(f'CNPJ inválido: {cnpj}')
+                app.destroy()
+                leia_cnpj()
             else:
+                print(f'A opção inserida foi: {cnpj}')
+                app.destroy()
                 break
         except KeyboardInterrupt:
             print()
@@ -54,7 +91,7 @@ def linha(tam=30):
     return '-' * tam
 
 
-def cabeçalho(msg):
+def cabecalho(msg):
     print(linha())
     print(msg.center(30))
     print(linha())
@@ -62,7 +99,7 @@ def cabeçalho(msg):
 
 def menu(lista):
     c = 1
-    cabeçalho('M E N U')
+    cabecalho('M E N U')
     for item in lista:
         print(f'{c} - {item}')
         c += 1
@@ -281,8 +318,15 @@ while True:
     elif user == 6:
         leia_cnpj()
     elif user == 7:
-        print('Em fase de implementação...')
-        sleep(2)
+        fgts()
+        sleep(3)
+        estadual()
+        sleep(3)
+        federal()
+        sleep(3)
+        trabalhista()
+        sleep(3)
+        simples()
     elif user == 8:
         print('Até logo!')
         exit()
