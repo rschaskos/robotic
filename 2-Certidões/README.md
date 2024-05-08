@@ -19,6 +19,7 @@ pip install pyautogui
 pip install webbrowser
 pip install selenium
 pip install pygetwindow
+pip install customtkinter
 ```
 Além disso, você também precisa ter o Python e Google Chrome instalados em sua máquina.
 
