@@ -407,6 +407,8 @@ while True:
         trabalhista()
         sleep(3)
         simples()
+        sleep(3)
+        tce()
     elif user == 10:
         print('Até logo!')
         exit()
