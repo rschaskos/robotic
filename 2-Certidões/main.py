@@ -11,14 +11,17 @@ from datetime import datetime
 from pygetwindow import PyGetWindowException
 from selenium.common.exceptions import NoSuchElementException
 import customtkinter as ctk
+from tkinter.filedialog import askopenfilename
 
-url = ['https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.jsf',
+url = ['http://systransparencia.arapoti.pr.gov.br:7474/contribuinte/#/stmCertidaoNegativa/certidaoNegativa',
+       'https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.jsf',
        'http://www.cdw.fazenda.pr.gov.br/cdw/emissao/certidaoAutomatica',
        'https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PJ/Consultar',
        'https://www.tst.jus.br/certidao1',
-       'https://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21']
+       'https://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21',
+       'https://www1.tce.pr.gov.br/conteudo/consultar-certidao-liberatoria/235540/area/54']
 
-version = 2.0
+__version__ = '2.0'
 
 # Essa função permite que o Chrome fique aberto mesmo após encerrar o código
 chrome_options = Options()
@@ -89,7 +92,7 @@ def leia_int(info):
             exit()
         else:
             return n
-        
+
 
 def linha(tam=30):
     return '-' * tam
@@ -118,11 +121,44 @@ def captcha():
     cap = str(input('Digite o Captcha: ')).strip()
 
 
-def fgts():
+def municipal():
     global browser
     browser = webdriver.Chrome(options=chrome_options)
     browser.maximize_window()
     browser.get(url[0])
+    browser.find_element('xpath', '//*[@id="cadastro-selecao-contribuinte-valor-EMPRESA_DO_MUNICIPIO"]').click()
+    sleep(1)
+    browser.find_element('xpath', '//*[@id="cnpj"]').click()
+    sleep(1)
+    browser.find_element('xpath', '//*[@id="cnpj"]').send_keys(cnpj)
+    sleep(1)
+    browser.find_element('xpath', '/html/body/app-root/section/button/div/span').click()
+    while True:
+        user = menu(['IMPRIMIR CERTIDÃO VÁLIDA', 'GERAR NOVA CERTIDÃO', 'VOLTAR AO MENU'])
+        if user == 1:
+            browser.find_element('xpath', '//*[@id="visualizar-0"]').click()
+            break
+        elif user == 2:
+            browser.find_element('xpath', '//*[@id="finalidades-valor-28"]').click()
+            browser.find_element('xpath', '//*[@id="nmRequerente"]').click()
+            browser.find_element('xpath', '//*[@id="nmRequerente"]').send_keys('MUNICIPIO DE ARAPOTI')
+            browser.find_element('xpath', '//*[@id="cpfCnpjRequerente"]').click()
+            browser.find_element('xpath', '//*[@id="cpfCnpjRequerente"]').send_keys('75658377000131')
+            browser.find_element('xpath', '//*[@id="gerar-nova-certidao"]/div/span').click()
+            sleep(2)
+            browser.find_element('xpath', '//*[@id="visualizar-0"]').click()
+            break
+        elif user == 3:
+            break
+        else:
+            print('Não existe essa opção.')
+
+
+def fgts():
+    global browser
+    browser = webdriver.Chrome(options=chrome_options)
+    browser.maximize_window()
+    browser.get(url[1])
     sleep(3)
     browser.find_element('xpath', '//*[@id="mainForm:txtInscricao1"]').click()
     browser.find_element('xpath', '//*[@id="mainForm:txtInscricao1"]').send_keys(cnpj)
@@ -138,7 +174,7 @@ def fgts():
             browser.find_element('xpath', '//*[@id="mainForm"]/div[1]/span')
             print('CAPTCHA INVÁLIDO')
             sleep(1)
-            browser.get(url[0])
+            browser.get(url[1])
             sleep(3)
             browser.find_element('xpath', '//*[@id="mainForm:txtInscricao1"]').click()
             browser.find_element('xpath', '//*[@id="mainForm:txtInscricao1"]').send_keys(cnpj)
@@ -180,7 +216,7 @@ def estadual():
     global browser
     browser = webdriver.Chrome(options=chrome_options)
     browser.maximize_window()
-    browser.get(url[1])
+    browser.get(url[2])
     browser.find_element('xpath', '//*[@id="EmissaoCnpj"]').click()
     browser.find_element('xpath', '//*[@id="EmissaoCnpj"]').send_keys(cnpj)
     browser.find_element('xpath', '//*[@id="submitBtn"]').click()
@@ -203,7 +239,7 @@ def estadual():
 
 def federal():
     chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
-    webbrowser.get(chrome_path).open(url[2])
+    webbrowser.get(chrome_path).open(url[3])
     sleep(4)
     while True:
         try:
@@ -234,13 +270,13 @@ def trabalhista():
     global browser
     browser = webdriver.Chrome(options=chrome_options)
     browser.maximize_window()
-    browser.get(url[3])
+    browser.get(url[4])
     browser.find_element('xpath',
                          '//*[@id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_Wu3q"]/div/div[2]/div/div/div/p/div/p/a').click()
     sleep(1)
-    browser.get(url[3])
+    browser.get(url[4])
     sleep(1)
-    browser.get(url[3])
+    browser.get(url[4])
     sleep(1)
     while True:
         try:
@@ -283,7 +319,7 @@ def trabalhista():
 
 def simples():
     chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
-    webbrowser.get(chrome_path).open(url[4])
+    webbrowser.get(chrome_path).open(url[5])
     sleep(4)
     while True:
         try:
@@ -292,7 +328,7 @@ def simples():
         except PyGetWindowException:
             print('Clique na Janela do Certidão')
             sleep(1)
-    sleep(1)
+        sleep(1)
     for c in range(7):
         pag.press('tab')
         sleep(0.3)
@@ -305,23 +341,63 @@ def simples():
         sleep(0.3)
     pag.press('enter')
 
+
+def tce():
+    chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
+    webbrowser.get(chrome_path).open(url[6])
+    sleep(4)
+    while True:
+        try:
+            pag.getWindowsWithTitle('Consultar Certidão Liberatória')[0].activate()
+            break
+        except PyGetWindowException:
+            print('	Clique na Janela do TCEPR')
+            sleep(1)
+    sleep(1)
+    for c in range(24):
+        pag.press('tab')
+    pag.write(cnpj)
+    sleep(1)
+    for c in range(2):
+        pag.press('tab')
+    sleep(1)
+    pag.press('enter')
+    sleep(4)
+    for c in range(6):
+        pag.press('tab')
+    sleep(1)
+    pag.press('enter')
+    sleep(2)
+    pag.press('enter')
+    sleep(2)
+    pag.press('enter')
+    sleep(1)
+    pag.press('enter')
+
+
 if __name__ == '__main__':
     leia_cnpj()
 while True:
-    user = menu(['FGTS', 'ESTADUAL', 'RECEITA FEDERAL', 'TRABALHISTA', 'SIMPLES NACIONAL', 'TROCAR CNPJ', 'GERAR TODAS', 'ENCERRAR'])
+    user = menu(['MUNICIPAL', 'FGTS', 'ESTADUAL', 'RECEITA FEDERAL', 'TRABALHISTA', 'SIMPLES NACIONAL', 'TCE-PR', 'TROCAR CNPJ', 'GERAR TODAS', 'ENCERRAR'])
     if user == 1:
-        fgts()
+        municipal()
     elif user == 2:
-        estadual()
+        fgts()
     elif user == 3:
-        federal()
+        estadual()
     elif user == 4:
-        trabalhista()
+        federal()
     elif user == 5:
-        simples()
+        trabalhista()
     elif user == 6:
-        leia_cnpj()
+        simples()
     elif user == 7:
+        tce()
+    elif user == 8:
+        leia_cnpj()
+    elif user == 9:
+        municipal()
+        sleep(3)
         fgts()
         sleep(3)
         estadual()
@@ -331,7 +407,7 @@ while True:
         trabalhista()
         sleep(3)
         simples()
-    elif user == 8:
+    elif user == 10:
         print('Até logo!')
         exit()
     else:
