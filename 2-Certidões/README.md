@@ -9,6 +9,7 @@ O código encontra-se adaptado para geração das seguintes certidões:
 - Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (Fazenda Federal)
 - Certidão Negativa de Débitos Trabalhistas (Federal)
 - Consulta Optantes pelo Simples Nacional (Federal)
+- Consulta Certidão Liberatória do Tribunal de Contas do Estado do Paraná (TCE PR)
 ```
 
 ## Pré-requisitos
