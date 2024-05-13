@@ -20,105 +20,149 @@ url = ['https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.j
        'https://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21',
        'https://www1.tce.pr.gov.br/conteudo/consultar-certidao-liberatoria/235540/area/54']
 
-__version__ = '2.0'
+__version__ = '3.0'
 
-# Essa função permite que o Chrome fique aberto mesmo após encerrar o código
+# Permite que o Chrome fique aberto após encerrar código, descomente p/ usar
 chrome_options = Options()
-chrome_options.add_experimental_option('detach', True)
+# chrome_options.add_experimental_option('detach', True)
 
-
-# def leia_cnpj():
-#     global cnpj
-#     cabecalho('DEFINA O CNPJ DA BUSCA')
-#     while True:
-#         try:
-#             cnpj = str(input('Digite o CNPJ desejado p/ consulta: '))
-#             if len(cnpj) < 14 or len(cnpj) > 14:
-#                 print('Possível CNPJ errado')
-#             else:
-#                 break
-#         except KeyboardInterrupt:
-#             print()
-#             print('Usuario encerrou')
-#             exit()
 
 def leia_cnpj():
-    global app
-    app = ctk.CTk()
-    app.title('Desenvolvido em Python')
-    app.geometry('400x100')
+    global win1
+    global cnpj_entry
+    win1 = ctk.CTk()
+    win1.title('Entre com o CNPJ')
+    win1.geometry('400x100')
 
     # Criação do campo de entrada para a opção
-    global option_entry
-    option_entry = ctk.CTkEntry(app, placeholder_text='Digite o CNPJ')
-    option_entry.pack(pady=30)
+    cnpj_entry = ctk.CTkEntry(win1, placeholder_text='Digite o CNPJ')
+    cnpj_entry.pack(pady=30)
 
     # Configuração para chamar a função quando a tecla "Enter" for pressionada
-    option_entry.bind('<Return>', handle_option_entry)
+    cnpj_entry.bind('<Return>', handle_cnpj_entry)
 
     # Execução da aplicação
-    app.mainloop()
+    win1.mainloop()
 
 
-def handle_option_entry(event=None):
+def handle_cnpj_entry(event=None):
     global cnpj
-    cnpj = option_entry.get()
+    cnpj = cnpj_entry.get()
     while True:
         try:
             if len(cnpj) < 14:
-                print(f'CNPJ inválido: {cnpj}')
-                app.destroy()
+                # print(f'CNPJ inválido: {cnpj}')
+                win1.destroy()
                 leia_cnpj()
             else:
-                print(f'A opção inserida foi: {cnpj}')
-                app.destroy()
+                # print(f'A opção inserida foi: {cnpj}')
+                win1.destroy()
                 break
         except KeyboardInterrupt:
-            print()
-            print('Usuario encerrou')
+            # print()
+            # print('Usuario encerrou')
             exit()
-
-
-def leia_int(info):
-    while True:
-        try:
-            n = int(input(info))
-        except (ValueError, TypeError):
-            print('Dado inválido')
-        except KeyboardInterrupt:
-            print()
-            print('Usuário encerrou.')
-            exit()
-        else:
-            return n
-
-
-def linha(tam=30):
-    return '-' * tam
-
-
-def cabecalho(msg):
-    print(linha())
-    print(msg.center(30))
-    print(linha())
-
-
-def menu(lista):
-    c = 1
-    cabecalho('M E N U')
-    for item in lista:
-        print(f'{c} - {item}')
-        c += 1
-    print(linha())
-    p = leia_int('Escolha: ')
-    print(linha())
-    return p
+    win2.mainloop()
 
 
 def captcha():
-    global cap
-    cap = str(input('Digite o Captcha: ')).strip()
+    global win3
+    global cap_entry
+    win3 = ctk.CTk()
+    win3.title('Entre com Captcha')
+    win3.geometry('400x100')
 
+    # Criação do campo de entrada para a opção
+    cap_entry = ctk.CTkEntry(win3, placeholder_text='Digite o Captcha')
+    cap_entry.pack(pady=30)
+
+
+    # Configuração para chamar a função quando a tecla "Enter" for pressionada
+    cap_entry.bind('<Return>', handle_cap_entry)
+
+    # Execução da aplicação
+    win3.mainloop()
+
+
+def handle_cap_entry(event=None):
+    global cap
+    cap = cap_entry.get()
+    while True:
+        try:
+            if len(cap) <= 3:
+                # print(f'Captcha Inválido: {cap}')
+                win3.destroy()
+                captcha()
+            else:
+                # print(f'A opção inserida foi: {cap}')
+                win3.quit()
+        except KeyboardInterrupt:
+            # print()
+            # print('Usuario encerrou')
+            exit()
+        finally:
+            win3.quit()
+        break
+    win3.destroy()
+
+# Função para lidar com o clique no botão
+def button_callback():
+    selected_option = combobox_1.get()
+    if selected_option == 'FGTS':
+        fgts()
+    elif selected_option == 'ESTADUAL':
+        estadual()
+    elif selected_option == 'RECEITA FEDERAL':
+        federal()
+    elif selected_option == 'TRABALHISTA':
+        trabalhista()
+    elif selected_option == 'SIMPLES NACIONAL':
+        simples()
+    elif selected_option == 'TCE-PR':
+        tce()
+    elif selected_option == 'TROCAR CNPJ':
+        leia_cnpj()
+    elif selected_option == 'GERAR TODAS CERTIDÕES':
+        sleep(3)
+        fgts()
+        sleep(3)
+        estadual()
+        sleep(3)
+        federal()
+        sleep(3)
+        trabalhista()
+        sleep(3)
+        simples()
+        sleep(3)
+        tce()
+
+
+# Configurações iniciais
+ctk.set_appearance_mode('light')
+ctk.set_default_color_theme('dark-blue')
+win2 = ctk.CTk()
+win2.title('Automatiza Certidões - Python')
+
+# Opções do menu
+frame_1 = ctk.CTkFrame(master=win2)
+frame_1.grid(row=0, pady=50, padx=50)
+win2.geometry('400x300')
+
+# Lista suspensa (combobox)
+combobox_1 = ctk.CTkComboBox(frame_1, values=['FGTS', 'ESTADUAL', 'RECEITA FEDERAL',
+                                              'TRABALHISTA', 'SIMPLES NACIONAL', 'TCE-PR', 'TROCAR CNPJ',
+                                              'GERAR TODAS CERTIDÕES'])
+combobox_1.grid(row=0, column=0, pady=10, padx=10)
+combobox_1.set('Tipo de Certidão')
+
+# Botão para efetivar a escolha
+button_1 = ctk.CTkButton(frame_1, text='Iniciar Automação', command=button_callback)
+button_1.grid(row=0, column=1, pady=10, padx=0)
+
+# Botão para encerrar
+button_encerrar = ctk.CTkButton(frame_1, text='Encerrar', command=win2.destroy)
+
+button_encerrar.grid(row=1, column=0, columnspan=2, pady=10, padx=10)
 
 def fgts():
     global browser
@@ -343,37 +387,4 @@ def tce():
 
 if __name__ == '__main__':
     leia_cnpj()
-while True:
-    user = menu(['FGTS', 'ESTADUAL', 'RECEITA FEDERAL', 'TRABALHISTA', 'SIMPLES NACIONAL', 'TCE-PR', 'TROCAR CNPJ', 'GERAR TODAS', 'ENCERRAR'])
-    if user == 1:
-        fgts()
-    elif user == 2:
-        estadual()
-    elif user == 3:
-        federal()
-    elif user == 4:
-        trabalhista()
-    elif user == 5:
-        simples()
-    elif user == 6:
-        tce()
-    elif user == 7:
-        leia_cnpj()
-    elif user == 8:
-        sleep(3)
-        fgts()
-        sleep(3)
-        estadual()
-        sleep(3)
-        federal()
-        sleep(3)
-        trabalhista()
-        sleep(3)
-        simples()
-        sleep(3)
-        tce()
-    elif user == 9:
-        print('Até logo!')
-        exit()
-    else:
-        print('Não existe essa opção.')
+
