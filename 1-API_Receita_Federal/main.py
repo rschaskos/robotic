@@ -15,7 +15,7 @@ def existeArquivo(nome):
 
 existe = False
 while existe != True:
-    nome = str(input('Digite o nome do arquivo que contém os cnpjs com extensão: ')).strip()
+    nome = str(input('NOME DO ARQUIVO COM EXTENSAO (ex.: cnpj.txt): ')).strip()
     if not existeArquivo(nome):
         print('Arquivo não encontrado')
     else:
