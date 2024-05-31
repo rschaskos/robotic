@@ -28,7 +28,7 @@ O código utiliza dois módulos, para instalar basta digitar os seguintes comand
       53616153000124,
       52027520000191,
 
-  ## 2 - No código, por padrão, a primeira coluna (ou primeiro separador) está definida como CNPJ. Caso o teu relatório tenha outra coluna definida como CNPJ, basta fazer o ajuste nessa parte do código, trocando o 0 (zero) por outro número de coluna:
+  ## 2 - No código, por padrão, a primeira coluna (ou primeiro separador) está definida como sendo a coluna que possui o CNPJ. Caso o teu relatório tenha outra coluna definida como CNPJ, basta fazer o ajuste nessa parte do código, trocando o 0 (zero) por outro número de coluna:
   
       0 = primeira coluna --> cnpj = linha.split(sep)[0]
       1 = segunda coluna --> cnpj = linha.split(sep)[1]
