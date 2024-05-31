@@ -20,7 +20,7 @@ while existe != True:
         print('Arquivo não encontrado')
     else:
         existe = True
-sep = str(input('Digite o separador do arquivo: ')).strip()
+sep = str(input('SEPARADOR DO ARQUIVO (ex.: , | ;): ')).strip()
 
 # Função criada para saber tamamho aproximado do relatório
 def calcula_tempo():
