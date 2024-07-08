@@ -42,6 +42,6 @@ O código utiliza dois módulos, para instalar basta digitar os seguintes comand
       
   ## 4 - Outro ponto importante a se observar é colocar o arquivo com a lista de CNPJ **na mesma pasta** que se encontra o arquivo de execução .py
 
- ##  5 - Ao final da lista de CNPJ, as informações coletadas serão salvas um arquivo "excel.csv" já tabuladas.
+ ##  5 - Ao final da lista de CNPJ, as informações coletadas serão salvas num arquivo "excel.csv" já tabuladas.
 
   Espero que lhe seja útil.
