@@ -14,11 +14,11 @@ Além disso, você também precisa ter o Python e Google Chrome instalados em su
 
 ## 1 - O arquivo TXT com a lista de pessoas precisa conter um separador. 
 
-     É muito comum que se utilizem os seguintes separadores: ( , ; | )
-     Para tanto basta ter a relação com os nomes que deseja buscar.
-     Esse código por padrão utiliza os seguintes dados separados por coluna com pipe "|" .
+É muito comum que se utilizem os seguintes separadores: ( , ; | )
+Para tanto basta ter a relação com os nomes que deseja buscar.
+Esse código por padrão utiliza os seguintes dados separados por coluna com pipe "|" .
 
-     CPF|nome completo|data de nascimento|nome completo do pai|nome completo da mãe
+CPF|nome completo|data de nascimento|nome completo do pai|nome completo da mãe
 
 ## Como executar
 
