@@ -1,3 +1,7 @@
+#########################################
+#   DESENVOLVIDO POR RSCHASKOS EM 2024  #
+#########################################
+
 import requests
 import json
 from time import sleep
