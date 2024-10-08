@@ -11,7 +11,7 @@ with open('excel.csv', 'w', newline='', encoding='utf-8') as output:
     writer = csv.writer(output, delimiter=';')
     writer.writerow(head)
 
-local = r'C:\Users\roney.schaskos\iCloudDrive\Cursos\Python\robotic\automatic\6-NFe_XML'
+local = r'C:\local\do\arquivo'
 
 for filename in os.listdir(local):
     if filename.endswith('.xml'):
