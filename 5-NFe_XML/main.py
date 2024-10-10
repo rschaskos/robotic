@@ -1,22 +1,22 @@
 import csv
 import os
 from xml.dom import minidom
-from time import sleep
 
 head = ['Empresa', 'N da NF', 'Data Emissao',
         'Codigo do Produto', 'Nome do Produto', 'Qtde do Produto',
         'Valor Unitario do Produto', 'Valor do Produto',
         'Valor de Desconto']
 
-with open('excel.csv', 'w', newline='', encoding='utf-8') as output:
+LOCAL = r'C:\Users\seu-usuario\local\arquivo'
+CSV_PATH = os.path.join(LOCAL, 'excel.csv')
+
+with open(CSV_PATH, 'w', newline='', encoding='utf-8') as output:
     writer = csv.writer(output, delimiter=';')
     writer.writerow(head)
 
-local = r'C:\local\da\pasta'
-
-for filename in os.listdir(local):
+for filename in os.listdir(LOCAL):
     if filename.endswith('.xml'):
-        filepath = os.path.join(local, filename)
+        filepath = os.path.join(LOCAL, filename)
         with open(filepath) as nfe:
             nfe = minidom.parse(nfe)
 
@@ -26,7 +26,7 @@ for filename in os.listdir(local):
 
             det_elements = nfe.getElementsByTagName('det')
 
-            with open('excel.csv', 'a', newline='', encoding='utf-8') as output:
+            with open(CSV_PATH, 'a', newline='', encoding='utf-8') as output:
                 writer = csv.writer(output, delimiter=';')
 
                 for det in det_elements:
@@ -41,7 +41,7 @@ for filename in os.listdir(local):
 
                     # Escrever os dados no CSV
                     writer.writerow([cnpj_emit, num_nfe, data_nfe, cProd, xProd, qProd, vUnProd, vProd, vDesc])
-                    # sleep(0.1)
                     print(cnpj_emit, num_nfe, data_nfe, cProd, xProd, qProd, vUnProd, vProd)
-print(f'\nSALVO NO LOCAL: {os.getcwd()}')
-print('\tSEU RELATÓRIO FOI CONCLUÍDO COM SUCESSO')
+print(f'\nSALVO NO LOCAL: {CSV_PATH}')
+print('SEU RELATÓRIO FOI CONCLUÍDO COM SUCESSO')
+print()
