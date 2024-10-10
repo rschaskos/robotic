@@ -1,3 +1,7 @@
+#########################################
+#   DESENVOLVIDO POR RSCHASKOS EM 2024  #
+#########################################
+
 import csv
 import os
 from xml.dom import minidom
