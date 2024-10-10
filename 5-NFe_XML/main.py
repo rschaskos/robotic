@@ -42,6 +42,6 @@ for filename in os.listdir(local):
                     # Escrever os dados no CSV
                     writer.writerow([cnpj_emit, num_nfe, data_nfe, cProd, xProd, qProd, vUnProd, vProd, vDesc])
                     # sleep(0.1)
-                    print(cnpj_emit, num_nfe, data_nfe, prod, cProd, xProd, qProd, vUnProd, vProd)
+                    print(cnpj_emit, num_nfe, data_nfe, cProd, xProd, qProd, vUnProd, vProd)
 print(f'\nSALVO NO LOCAL: {os.getcwd()}')
 print('\tSEU RELATÓRIO FOI CONCLUÍDO COM SUCESSO')
