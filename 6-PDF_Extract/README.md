@@ -26,4 +26,6 @@ O script irá fazer todo trabalho, basta aguardar
 
 ## Funcionalidades
 
-Este código Python visa automatizar o processo de extração de informações de um PDF por meio do módulo PyPDF2 usando Regular Expressions (re) e insere-os em dois arquivos ".csv". 
+Este código Python visa automatizar o processo de extração de informações de um PDF por meio do módulo PyPDF2 usando Regular Expressions (re) e insere-os em dois arquivos ".csv".
+
+Trata-se de uma ferramenta para uso interno na organização, porém é possível pegar os conceitos para uso em qualquer arquivo PDF que precise ser automatizado.
