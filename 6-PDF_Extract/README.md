@@ -5,7 +5,6 @@
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes bibliotecas, para isso digite os comandos abaixo no terminal:
 
 ```
-pip install requests
 pip install csv
 pip install PyPDF2
 ```
