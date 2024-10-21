@@ -13,7 +13,7 @@ def iniciar():
     print('Iniciando', end='')
     for c in range(3):
         print('.', end='')
-        sleep(0.3)
+        sleep(0.5)
 
 def limpar():
     os.system('cls')
@@ -55,8 +55,8 @@ def processar_relatorio_gasolina(input_file, output_file):
         lines = file.readlines()
 
     # Expressões regulares para identificar as linhas
-    cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: (\d+,\d{2})')
-    gasolina_pattern = re.compile(r'(\d+) GASOLINA (\d+) (\d) (\d) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{2})')
+    cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: ((?:\d{1,3}\.)*\d{1,3},\d{2})')
+    gasolina_pattern = re.compile(r'(\d+) GASOLINA (\d+) (\d) (\d) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{4}) ((?:\d{1,3}\.)*\d{1,3},\d{2})')
     liquidacao_empenho_pattern = re.compile(r'(\d{5}/\d{4}) (\d{4}/\d{4})')
 
     # Lista para armazenar os dados combinados
@@ -104,8 +104,8 @@ def processar_relatorio_diesel(input_file, output_file):
         lines = file.readlines()
 
     # Expressões regulares para identificar as linhas
-    cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: (\d+,\d{2})')
-    diesel_pattern = re.compile(r'(\d+) (DIESEL S\d+) (\d+) (\d) (\d) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{2})')    
+    cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: ((?:\d{1,3}\.)*\d{1,3},\d{2})')
+    diesel_pattern = re.compile(r'(\d+) (DIESEL S\d+) (\d+) (\d) (\d) ((?:\d{1,3}\.)*\d{1,3},\d{4}) (\d+,\d{4}) (\d+,\d{4}) ((?:\d{1,3}\.)*\d{1,3},\d{2})')
     liquidacao_empenho_pattern = re.compile(r'(\d{5}/\d{4}) (\d{4}/\d{4})')
 
     # Lista para armazenar os dados combinados
@@ -176,7 +176,3 @@ while True:
         limpar()
         print('Opção inválida! Tente novamente')
         
-
-
-
-
