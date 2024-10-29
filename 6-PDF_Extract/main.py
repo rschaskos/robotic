@@ -1,3 +1,7 @@
+#########################################
+#   DESENVOLVIDO POR RSCHASKOS EM 2024  #
+#########################################
+
 import PyPDF2
 import re
 import csv
@@ -5,9 +9,20 @@ import os
 from pathlib import Path
 from time import sleep
 
-downloads_path = Path.home() / "Downloads"
-FILE_PATH_GAS = downloads_path / "gasolina.pdf"
-FILE_PATH_DIE = downloads_path / "diesel.pdf"
+
+# define constantes
+NAME_PATH = 'Downloads'
+NAME_FILE_GAS_PDF = 'gasolina.pdf'
+NAME_FILE_DIE_PDF = 'diesel.pdf'
+NAME_FILE_GAS_TXT = 'gasolina.txt'
+NAME_FILE_DIE_TXT = 'diesel.txt'
+NAME_FILE_GAS_CSV = 'gasolina.csv'
+NAME_FILE_DIE_CSV = 'diesel.csv'
+
+# define pasta dos arquivos em PDF
+downloads_path = Path.home() / NAME_PATH
+FILE_PATH_GAS = downloads_path / NAME_FILE_GAS_PDF
+FILE_PATH_DIE = downloads_path / NAME_FILE_DIE_PDF
 
 def iniciar():
     print('Iniciando', end='')
@@ -25,29 +40,29 @@ def pdf_gasolina():
             texto = ''
             for c in leitor_pdf.pages:
                 texto += c.extract_text()
-            with open('gasolina.txt', 'a', encoding='UTF-8') as out:
+            with open(NAME_FILE_GAS_TXT, 'a', encoding='UTF-8') as out:
                 out.write(texto)
         limpar()
         print('Conversão realizada com sucesso!')
     except FileNotFoundError:
         limpar()
-        print('Arquivo "gasolina.pdf" não localizado')
+        print(f'Arquivo {NAME_FILE_GAS_PDF} não localizado')
         exit()
 
 def pdf_diesel():
     try:
         with open(FILE_PATH_DIE, 'rb') as pdf:
-            leitor_pdf = PyPDF2.PdfReader(pdf)
-            texto = ''
-            for c in leitor_pdf.pages:
-                texto += c.extract_text()
-            with open('diesel.txt', 'a', encoding='UTF-8') as out:
-                out.write(texto)
+             leitor_pdf = PyPDF2.PdfReader(pdf)
+             texto = ''
+             for c in leitor_pdf.pages:
+                texto += c.extract_text() + ' '        
+        with open(NAME_FILE_DIE_TXT, 'a', encoding='UTF-8') as out:
+            out.write(texto)
         limpar()
         print('Conversão realizada com sucesso!')
     except FileNotFoundError:
         limpar()
-        print('Arquivo "diesel.pdf" não localizado')
+        print(f'Arquivo {NAME_FILE_DIE_PDF} não localizado')
         exit()
 
 def processar_relatorio_gasolina(input_file, output_file):
@@ -55,12 +70,13 @@ def processar_relatorio_gasolina(input_file, output_file):
         lines = file.readlines()
 
     # Expressões regulares para identificar as linhas
+    liquidacao_empenho_pattern = re.compile(r'(\d{5}/\d{4}) (\d{4}/\d{4})')
     cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: ((?:\d{1,3}\.)*\d{1,3},\d{2})')
     gasolina_pattern = re.compile(r'(\d+) GASOLINA (\d+) (\d) (\d) (\d+,\d{4}) (\d+,\d{4}) (\d+,\d{4}) ((?:\d{1,3}\.)*\d{1,3},\d{2})')
-    liquidacao_empenho_pattern = re.compile(r'(\d{5}/\d{4}) (\d{4}/\d{4})')
+    
 
     # Lista para armazenar os dados combinados
-    dados_combinados = []
+    dados_combinados = [] 
 
     liquidacao = None
     empenho = None
@@ -107,7 +123,7 @@ def processar_relatorio_diesel(input_file, output_file):
     cupom_pattern = re.compile(r'Cupom Fiscal Nº(\d+) Série: (\d+) Data: (\d{2}/\d{2}/\d{4}) Valor: ((?:\d{1,3}\.)*\d{1,3},\d{2})')
     diesel_pattern = re.compile(r'(\d+) (DIESEL S\d+) (\d+) (\d) (\d) ((?:\d{1,3}\.)*\d{1,3},\d{4}) (\d+,\d{4}) (\d+,\d{4}) ((?:\d{1,3}\.)*\d{1,3},\d{2})')
     liquidacao_empenho_pattern = re.compile(r'(\d{5}/\d{4}) (\d{4}/\d{4})')
-
+    
     # Lista para armazenar os dados combinados
     dados_combinados = []
 
@@ -162,12 +178,12 @@ while True:
         limpar()
         iniciar()
         pdf_gasolina()
-        processar_relatorio_gasolina('gasolina.txt', 'gasolina.csv')
+        processar_relatorio_gasolina(NAME_FILE_GAS_TXT, NAME_FILE_GAS_CSV)
     elif user == '2':
         limpar()
         iniciar()
         pdf_diesel()
-        processar_relatorio_diesel('diesel.txt', 'diesel.csv')
+        processar_relatorio_diesel(NAME_FILE_DIE_TXT, NAME_FILE_DIE_CSV)
     elif user == '3':
         limpar()
         print('Até mais!')
