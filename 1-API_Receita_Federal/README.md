@@ -8,7 +8,7 @@ O código utiliza dois módulos, para instalar basta digitar os seguintes comand
     pip install requests
     pip install json
 
-# Para utilizar essa API você deve passar dois parâmetros ao executar o código.
+# Para utilizar esse código você deve passar dois parâmetros ao executar o script.
 
  ## 1 - O arquivo TXT com a lista de CNPJ precisa conter um separador. 
      É muito comum que se utilizem os seguintes separadores: ( , ; | )
