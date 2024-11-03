@@ -1,4 +1,4 @@
-<h1 align="center"> SCRIPT PARA EXTRAÇÃO AUTOMÁTICA DE PDF </h1>
+<h1 align="center"> SCRIPT PARA EXTRAÇÃO AUTOMÁTICA DE INFORMAÇÕES EM PDF </h1>
 
 ## Pré-requisitos
 
