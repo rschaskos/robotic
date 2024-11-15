@@ -13,12 +13,14 @@ pip install email (geralmente já instalada)
 
 ## 1 - Defina o arranjo de IP que tem interesse em identificar e configure os valores de e-mail inicial. 
 
+```
 rede = ipaddress.ip_network('192.168.5.0/24') 
 EMAIL_REMETENTE = 'seu-endereco@seu-provedor.com.'
 SENHA = 'seu-password'
 EMAIL_DESTINATARIO = 'email-destinario@provedor.com'
 SMTP_SERVER = 'smtp-do-envio.com' # exemplo gmail: smtp.gmail.com
 SMTP_PORT = 587
+```
 
 ## Como executar
 
