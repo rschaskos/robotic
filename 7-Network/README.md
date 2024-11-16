@@ -37,4 +37,4 @@ O script irá fazer todo trabalho, basta aguardar
 
 Este código Python tem por objetivo indentificar quais computadores estão ativos numa rede e enviar o relatório dos IPs ativos por e-mail.
 
-Trata-se de uma ferramenta para uso interno na organização, porém é possível aprender com os conceitos utilizados
+Trata-se de uma ferramenta para uso interno na organização, porém é possível usar com os conceitos empregados.
