@@ -8,6 +8,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 pip install ipaddress
 pip install smtplib (geralmente já instalada)
 pip install email (geralmente já instalada)
+pip install dotenv
 
 ```
 
