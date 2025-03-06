@@ -7,13 +7,16 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from pathlib import Path
+from dotenv import load_dotenv
 
 
 # Configurações do e-mail
-EMAIL_REMETENTE = 'seu-endereco@seu-provedor.com.'
-SENHA = 'seu-password'
-EMAIL_DESTINATARIO = 'email-destinario@provedor.com'
-SMTP_SERVER = 'smtp-do-envio.com' # exemplo gmail: smtp.gmail.com
+load_dotenv()
+
+EMAIL_REMETENTE = os.getenv('EMAIL_REMETENTE', '')
+SENHA = os.getenv('SENHA', '')
+EMAIL_DESTINATARIO = os.getenv('EMAIL_DESTINATARIO', '')
+SMTP_SERVER = os.getenv('SMTP_SERVER', '')
 SMTP_PORT = 587
 
 hour = datetime.now().time()
