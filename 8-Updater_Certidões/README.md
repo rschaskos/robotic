@@ -16,7 +16,7 @@ pip install PyPDF2
 pip install webdriver-manager # Para gerenciar automaticamente o driver do Chrome
 ```
 
-## Explicação das bibliotecas adicionadas:
+## Explicação das bibliotecas adicionadas
 
     PySide6: Necessária para criar a interface gráfica do aplicativo.
     selenium: Utilizada para automatizar a interação com o navegador web.
@@ -72,7 +72,7 @@ pip install webdriver-manager # Para gerenciar automaticamente o driver do Chrom
 
 ## Funcionalidades
 
-## Este código Python automatiza a inserção de dados de certificados em um sistema web, agilizando o processo e reduzindo o risco de erros manuais. As principais funcionalidades incluem:
+## Este código Python automatiza a inserção de dados de certificados em um sistema web, agilizando o processo e reduzindo o risco de erros manuais. As principais funcionalidades incluem
 
     Interface Gráfica: Uma interface amigável construída com PySide6 permite ao usuário inserir as credenciais de login e selecionar os tipos de certificados a serem processados.
     Login Automatizado: O script automatiza o processo de login no sistema web.
