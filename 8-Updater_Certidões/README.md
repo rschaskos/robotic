@@ -52,19 +52,18 @@ Se você tiver o PyInstaller instalado, pode compilar o script em um executável
 Abra o terminal e navegue até o diretório do projeto.
 Execute o seguinte comando para compilar o script (ajuste o caminho se necessário):
 ```
-pyinstaller --onefile --noconsole --icon=src/favicon.ico main.py --add-data "src:src" --add-data "*.pdf:." --add-data "patterns.py:."
+pyinstaller --clean --onedir --noconsole --icon=src/favicon.ico main.py --add-data "src:src"
 ```
 Explicação das opções do PyInstaller:
---onefile: Cria um único arquivo executável.
+--clean: Cria em executável limpo de caches
+--onedir: Cria um arquivo executável com os diretórios separados.
 --noconsole: Não exibe a janela do console.
 --icon=src/favicon.ico: Define o ícone do executável.
 --add-data "src:src": Inclui a pasta src e seu conteúdo no executável.
---add-data "*.pdf:.": Inclui todos os arquivos PDF na raiz do executável.
---add-data "patterns.py:.": Inclui o arquivo patterns.py na raiz do executável.
 
 O executável será gerado na pasta dist.
 
-Execute o arquivo .exe.
+Execute o arquivo .exe e mova os arquivos em .pdf para dentro da pasta "_internal"
 
 ## Funcionalidades
 
